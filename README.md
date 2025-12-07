@@ -8,15 +8,30 @@ CapsLock-based keyboard navigation. Keep hands on home row.
 
 [Static-Hands](https://www.youtube.com/@solabhq)
 
+Prerequisites (Требования)
+
 ## Installation
 
-```bash
+**Step 1: Prepare the Environment** 
+
+Ensure [Karabiner-Elements](https://karabiner-elements.pqrs.org/) is installed and running. This tool functions as a configuration profile for Karabiner-Elements, so you must install it first.
+
+**Step 2: **Install Static Hands** 
+
+Open your terminal and run the following commands:
+
+ ```bash
 cd Advanced/  # or Basic/
 chmod +x install.sh
 ./install.sh
 ```
 
-Grant permissions: System Settings → Privacy & Security → Input Monitoring
+**Step 3: Activate  **
+
+1. Open Karabiner-Elements.
+2. Go to the Complex Modifications tab.
+3. Click Add rule.
+4. You should see "Static Hands" in the list. Click Enable All.
 
 ## Versions
 
