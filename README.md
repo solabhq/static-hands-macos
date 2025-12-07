@@ -8,8 +8,6 @@ CapsLock-based keyboard navigation. Keep hands on home row.
 
 [Static-Hands](https://www.youtube.com/@solabhq)
 
-Prerequisites (Требования)
-
 ## Installation
 
 **Step 1: Prepare the Environment** 
