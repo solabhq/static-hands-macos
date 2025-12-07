@@ -2,9 +2,9 @@
 
 CapsLock-based keyboard navigation. Keep hands on home row.
 
-## 📺 Video Tutorial
-
-[![Turn CapsLock into a Superpower](https://img.youtube.com/vi/HyXDovTcNtk/maxresdefault.jpg)](https://youtu.be/HyXDovTcNtk)
+<a href="https://youtu.be/HyXDovTcNtk">
+  <img src="https://img.youtube.com/vi/HyXDovTcNtk/maxresdefault.jpg" alt="Static Hands Tutorial" width="100%">
+</a>
 
 ## Installation
 
