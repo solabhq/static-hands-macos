@@ -16,7 +16,7 @@ Prerequisites (Требования)
 
 Ensure [Karabiner-Elements](https://karabiner-elements.pqrs.org/) is installed and running. This tool functions as a configuration profile for Karabiner-Elements, so you must install it first.
 
-**Step 2: **Install Static Hands** 
+**Step 2: Install Static Hands** 
 
 Open your terminal and run the following commands:
 
@@ -26,7 +26,7 @@ chmod +x install.sh
 ./install.sh
 ```
 
-**Step 3: Activate  **
+**Step 3: Activate**
 
 1. Open Karabiner-Elements.
 2. Go to the Complex Modifications tab.
