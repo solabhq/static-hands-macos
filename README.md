@@ -34,13 +34,13 @@ Grant permissions: System Settings → Privacy & Security → Input Monitoring
 - Google Search
 - Files: 4 | Size: 82 KB
 
-## Quick Reference
-
 ## 🖼️ Wallpaper Pack
 
 **Keep the keyboard layout always visible on your desktop!**
 
 [Download 4K Wallpaper Pack](https://ko-fi.com/s/d626933c7d)
+
+## Quick Reference
 
 ### Navigation (both versions)
 ```
