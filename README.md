@@ -2,11 +2,7 @@
 
 CapsLock-based keyboard navigation. Keep hands on home row.
 
-<img width="2410" height="958" alt="2_statichands-extended_large_3840x2160 1" src="https://github.com/user-attachments/assets/ed3224a5-952b-4658-b909-78734fd4e49c" />
-
-## 📺 Video Review
-
-[Static-Hands](https://www.youtube.com/@solabhq)
+[![Static Hands Tutorial](https://img.youtube.com/vi/HyXDovTcNtk/maxresdefault.jpg)](https://www.youtube.com/watch?v=HyXDovTcNtk)
 
 ## Installation
 
@@ -51,7 +47,8 @@ chmod +x install.sh
 
 **Keep the keyboard layout always visible on your desktop!**
 
-[Download 4K Wallpaper Pack](https://ko-fi.com/s/d626933c7d)
+[Download 4K Wallpaper Pack (Basic)](https://ko-fi.com/s/d626933c7d)
+[Download 4K Wallpaper Pack (Advanced)](https://ko-fi.com/s/5c3a4e744a)
 
 ## Quick Reference
 
