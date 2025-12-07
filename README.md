@@ -4,7 +4,7 @@ CapsLock-based keyboard navigation. Keep hands on home row.
 
 ## 📺 Video Tutorial
 
-[![Static Hands Tutorial](https://img.youtube.com/vi/HyXDovTcNtk/hqdefault.jpg)](https://youtu.be/HyXDovTcNtk)
+[![Turn CapsLock into a Superpower](https://img.youtube.com/vi/HyXDovTcNtk/maxresdefault.jpg)](https://youtu.be/HyXDovTcNtk)
 
 ## Installation
 
