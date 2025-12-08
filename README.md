@@ -2,7 +2,7 @@
 
 CapsLock-based keyboard navigation. Keep hands on home row.
 
-## 📺 Video Tutorial
+## 📺 Video Review
 
 [![Static Hands Tutorial](https://img.youtube.com/vi/HyXDovTcNtk/maxresdefault.jpg)](https://youtu.be/HyXDovTcNtk)
 
