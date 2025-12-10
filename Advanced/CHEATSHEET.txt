@@ -1,17 +1,20 @@
 ╔═══════════════════════════════════════════════════════════════════════════════╗
 ║                    STATIC HANDS - ADVANCED CHEATSHEET                         ║
-║                         macOS Edition (v2.0.0)                                ║
+║                              macOS Edition                                    ║
 ╚═══════════════════════════════════════════════════════════════════════════════╝
 
 ┌─────────────────────────────────────────────────────────────────────────────┐
 │ NAVIGATION (CapsLock +)                                                       │
 ├─────────────────────────────────────────────────────────────────────────────┤
 │  I/J/K/L    → ↑/←/↓/→ (Arrow keys)                                           │
-│  U / O      → Home / End (beginning/end of line)                             │
+│  U / O      → Line Start / Line End (⌘← / ⌘→)                                │
 │  Y / N      → Page Up / Page Down                                            │
 │  H          → Delete (delete forward)                                        │
 │  ;          → Backspace (delete backward)                                    │
 │  P          → Insert (F13)                                                   │
+│                                                                               │
+│  📝 Note: U/O jump to line start/end, NOT document start/end                 │
+│      For document start/end, use: CapsLock + W + I/K                         │
 └─────────────────────────────────────────────────────────────────────────────┘
 
 ┌─────────────────────────────────────────────────────────────────────────────┐
@@ -24,7 +27,10 @@
 │                                                                               │
 │  Examples:                                                                    │
 │  CapsLock + W + C  → ⌘+C (copy)                                              │
-│  CapsLock + F + L  → ⌃+L (hold → select right with Control)                  │
+│  CapsLock + W + I  → ⌘+↑ (document start)                                    │
+│  CapsLock + W + K  → ⌘+↓ (document end)                                      │
+│  CapsLock + D + L  → ⇧+→ (select right)                                      │
+│  CapsLock + S + L  → ⌥+→ (jump word right)                                   │
 └─────────────────────────────────────────────────────────────────────────────┘
 
 ┌─────────────────────────────────────────────────────────────────────────────┐
@@ -54,7 +60,8 @@
 │  0          → lowercase (HELLO → hello)                                      │
 │  -          → Title Case (hello world → Hello World)                         │
 │                                                                               │
-│  Usage: Select text → press combination                                      │
+│  ⚠️ Usage: SELECT text FIRST → then press combination                        │
+│  ⚠️ Requires: Python 3 installed                                             │
 └─────────────────────────────────────────────────────────────────────────────┘
 
 ┌─────────────────────────────────────────────────────────────────────────────┐
@@ -99,8 +106,10 @@
 │ Fast Navigation in Long Document:                                           │
 │ 1. CapsLock + 8 (multiple times) → Jump up quickly                           │
 │ 2. CapsLock + M     → Jump left 6 words                                      │
-│ 3. CapsLock + U     → Beginning of line                                      │
-│ 4. CapsLock + O     → End of line                                            │
+│ 3. CapsLock + U     → Beginning of LINE                                      │
+│ 4. CapsLock + O     → End of LINE                                            │
+│ 5. CapsLock + W + I → Beginning of DOCUMENT                                  │
+│ 6. CapsLock + W + K → End of DOCUMENT                                        │
 └─────────────────────────────────────────────────────────────────────────────┘
 
 ┌─────────────────────────────────────────────────────────────────────────────┐
@@ -116,7 +125,8 @@
 📅 DAY 1-3: Basic Navigation
    → Focus on I/K/J/L for cursor movement
    → Use H and ; for deletion
-   → Practice U/O for jumping to beginning/end of line
+   → Practice U/O for jumping to beginning/end of LINE
+   → Learn W+I/K for document start/end
 
 📅 WEEK 1: Editing
    → Add Z/X/C/V for undo/cut/copy/paste
@@ -124,7 +134,7 @@
    → Start using modifiers W/S/D/F
 
 📅 WEEK 2+: Advanced Usage
-   → Case transformation 9/0/-
+   → Case transformation 9/0/- (requires Python 3)
    → Special functions Q/R/T/7
    → Create your own workflows
    → Full muscle memory established
@@ -135,19 +145,34 @@
 ║                           TROUBLESHOOTING                                      ║
 ╚═══════════════════════════════════════════════════════════════════════════════╝
 
-❓ Keys not working?
-   → Check configuration is enabled in Karabiner
+❓ Keys not working at all?
+   → Open Karabiner-Elements
+   → Go to "Complex Modifications" tab
+   → Verify ALL 9 rules are ENABLED (not just added)
+   → "CapsLock as Modifier" MUST be enabled first
    → System Settings → Privacy & Security → Input Monitoring
    → Restart Karabiner-Elements
 
+❓ Modifiers (W/S/D/F) not working?
+   → Ensure you're HOLDING the modifier key
+   → Check "Modifier Keys (W/S/D/F)" rule is enabled
+   → Press and hold: CapsLock → W → then another key
+
 ❓ Case transformation not working?
+   → Must SELECT text FIRST before transforming
    → Ensure Python 3 is installed: python3 --version
    → Grant Automation permissions for Karabiner in System Settings
+   → If still failing: brew install python3
+
+❓ U/O jumping to document start/end instead of line?
+   → This is CORRECT behavior! U/O = line start/end
+   → For document start/end: use CapsLock + W + I/K
 
 ❓ Configuration not appearing?
    → Check file: ls -lh ~/.config/karabiner/assets/complex_modifications/
+   → File should be: static-hands-advanced-macos.json
    → Validate JSON: python3 -m json.tool <file>
-   → Restart Karabiner
+   → Restart Karabiner-Elements
 
 ╔═══════════════════════════════════════════════════════════════════════════════╗
 ║                      SYSTEM REQUIREMENTS                                       ║
@@ -155,30 +180,31 @@
 
 ✅ macOS 10.15 Catalina or newer
 ✅ Karabiner-Elements 14.0+
-✅ Python 3 (for case transformation)
+✅ Python 3 (for case transformation features)
 ✅ Input Monitoring permissions for Karabiner
 
 ╔═══════════════════════════════════════════════════════════════════════════════╗
-║                      INSTALLATION SCRIPTS                                      ║
+║                      INSTALLATION                                              ║
 ╚═══════════════════════════════════════════════════════════════════════════════╝
 
 🚀 INSTALL
    chmod +x install.sh && ./install.sh
-   → Automated installation with upgrade detection
-   → Checks dependencies and permissions
-   → Creates backups automatically
-
-🔄 UPGRADE
-   chmod +x upgrade.sh && ./upgrade.sh
-   → Smart upgrade with automatic backup
-   → Preserves custom settings
-   → Shows what's new
-
-🗑️ UNINSTALL
-   chmod +x uninstall.sh && ./uninstall.sh
-   → Clean removal with final backup
-   → Optional full Karabiner removal
-   → Shows restoration instructions
+   
+   ⚠️ IMPORTANT: After installation, you MUST manually enable rules:
+   1. Open Karabiner-Elements
+   2. Go to "Complex Modifications" tab
+   3. Click "Add rule"
+   4. Find "Static Hands - Advanced (macOS)"
+   5. Enable ALL 9 rules in order:
+      ✓ CapsLock as Modifier (FIRST!)
+      ✓ Modifier Keys (W/S/D/F)
+      ✓ Navigation
+      ✓ Command Combinations
+      ✓ Text Editing
+      ✓ Speed Navigation
+      ✓ Case Transformation
+      ✓ Special Functions
+      ✓ Google Search
 
 ╔═══════════════════════════════════════════════════════════════════════════════╗
 ║                      COMPATIBILITY NOTES                                       ║
@@ -189,7 +215,7 @@
    • All editing (A/Z/X/C/V/B)
    • All modifiers (W→Cmd, S→Opt, D→Shift, F→Ctrl)
    • Speed navigation (8/,/M/.)
-   • Case transformation (9/0/-)
+   • Case transformation (9/0/-) with Python 3
    • Most special functions (Q/R/T/7/`/F7)
    • Google Search (Option+G)
 
@@ -197,18 +223,21 @@
    • Always On Top (=) - shows notification, no native support
    • Help (F10) - notification instead of GUI window
 
-💡 TIP: Modifiers are adapted for macOS:
-   Windows: W=Win, F=Ctrl, S=Alt
-   macOS:   W=Cmd, F=Ctrl, S=Option
+💡 KEY DIFFERENCES FROM WINDOWS VERSION:
+   • U/O = Line start/end (not document start/end)
+   • Document start/end requires: CapsLock + W + I/K
+   • Modifier mappings adapted for macOS:
+     Windows: W=Win, F=Ctrl, S=Alt
+     macOS:   W=Cmd, F=Ctrl, S=Option
 
 ╔═══════════════════════════════════════════════════════════════════════════════╗
-║  Version: 2.0.0 Advanced | Platform: macOS (Karabiner-Elements)               ║
+║  Static Hands Advanced | Platform: macOS (Karabiner-Elements)                 ║
 ║  Compatibility: 95% of features from Windows AutoHotkey version               ║
-║  Total Rules: 38 | Coverage: Navigation + Editing + Special Functions         ║
+║  Total Rules: 9 rule groups | 38+ individual key mappings                     ║
 ╚═══════════════════════════════════════════════════════════════════════════════╝
 
 For full documentation see README.md
-For quick installation see INSTALL.md
-For version history see CHANGELOG.md
+For installation guide see install.sh
+For configuration details see static-hands-advanced-macos.json
 
 Happy typing! ⌨️✨
