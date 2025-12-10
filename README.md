@@ -57,7 +57,7 @@ chmod +x install.sh
 ### Navigation (both versions)
 ```
 CapsLock + I/K/J/L = Arrows
-CapsLock + U/O = Home/End
+CapsLock + U/O = Line Start/End
 CapsLock + Y/N = Page Up/Down
 CapsLock + H = Delete
 ```
