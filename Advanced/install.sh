@@ -1,7 +1,6 @@
 #!/bin/bash
 
 # Static Hands - Advanced Edition Installer
-# Version: 3.0.0
 # Platform: macOS (Karabiner-Elements)
 
 set -e  # Exit on error
@@ -122,112 +121,11 @@ install_config() {
     fi
 }
 
-# Auto-enable rules in Karabiner
-auto_enable_rules() {
-    print_header "Enabling Rules Automatically"
-
-    # Check if Python is available
-    if ! command -v python3 &> /dev/null; then
-        print_warning "Python 3 not found - will skip auto-enable"
-        return 1
-    fi
-
-    # Wait for Karabiner to initialize
-    sleep 2
-
-    # Check if karabiner.json exists
-    if [ ! -f "$KARABINER_JSON" ]; then
-        print_warning "Karabiner config not found yet - will skip auto-enable"
-        print_info "Please enable rules manually in Karabiner-Elements"
-        return 1
-    fi
-
-    print_info "Attempting to enable rules automatically..."
-
-    # Use Python to safely modify karabiner.json
-    python3 << 'PYEOF'
-import json
-import sys
-import os
-
-CONFIG_DIR = os.path.expanduser("~/.config/karabiner/assets/complex_modifications")
-CONFIG_NAME = "static-hands-advanced-macos.json"
-KARABINER_JSON = os.path.expanduser("~/.config/karabiner/karabiner.json")
-
-try:
-    # Read karabiner.json
-    with open(KARABINER_JSON, 'r') as f:
-        config = json.load(f)
-
-    # Find the profile
-    if 'profiles' not in config or len(config['profiles']) == 0:
-        print("⚠️  No profiles found - please enable manually")
-        sys.exit(1)
-
-    profile = config['profiles'][0]
-
-    # Ensure complex_modifications exists
-    if 'complex_modifications' not in profile:
-        profile['complex_modifications'] = {'rules': []}
-    if 'rules' not in profile['complex_modifications']:
-        profile['complex_modifications']['rules'] = []
-
-    # Read our configuration
-    config_path = os.path.join(CONFIG_DIR, CONFIG_NAME)
-    if not os.path.exists(config_path):
-        print(f"⚠️  Config file not found: {config_path}")
-        sys.exit(1)
-
-    with open(config_path, 'r') as f:
-        our_config = json.load(f)
-
-    # Get all rule descriptions
-    rules_to_add = []
-    for rule_group in our_config.get('rules', []):
-        desc = rule_group.get('description')
-        if desc:
-            rules_to_add.append({'description': desc})
-
-    # Check existing rules
-    existing = {r.get('description') for r in profile['complex_modifications']['rules']}
-
-    # Add new rules
-    added = 0
-    for rule in rules_to_add:
-        if rule['description'] not in existing:
-            profile['complex_modifications']['rules'].append(rule)
-            added += 1
-
-    if added > 0:
-        # Save
-        with open(KARABINER_JSON, 'w') as f:
-            json.dump(config, f, indent=4)
-        print(f"✅ Enabled {added} rules")
-        sys.exit(0)
-    else:
-        print("ℹ️  Rules already enabled")
-        sys.exit(0)
-
-except Exception as e:
-    print(f"⚠️  Auto-enable failed: {e}")
-    print("   Please enable manually in Karabiner-Elements")
-    sys.exit(1)
-PYEOF
-
-    if [ $? -eq 0 ]; then
-        print_success "Rules enabled automatically!"
-        return 0
-    else
-        print_warning "Auto-enable did not complete"
-        return 1
-    fi
-}
-
 # Restart Karabiner
 restart_karabiner() {
     print_info "Restarting Karabiner-Elements..."
     killall "Karabiner-Elements" 2>/dev/null || true
-    sleep 3
+    sleep 2
     open -a "Karabiner-Elements"
     sleep 2
     print_success "Karabiner-Elements restarted"
@@ -236,46 +134,34 @@ restart_karabiner() {
 # Show post-installation instructions
 show_instructions() {
     print_header "Installation Complete! 🎉"
-
-    if [ "$AUTO_ENABLED" = true ]; then
-        echo "✅ Rules were enabled automatically!"
-        echo ""
-        echo "Next steps:"
-        echo ""
-        echo "1. Grant Permissions (if not already done):"
-        echo "   • System Settings → Privacy & Security → Input Monitoring"
-        echo "   • Enable 'karabiner_grabber' and 'karabiner_observer'"
-        echo ""
-        echo "2. Verify in Karabiner-Elements:"
-        echo "   • Open Karabiner-Elements"
-        echo "   • Go to 'Complex Modifications' tab"
-        echo "   • You should see all 9 rules enabled ✅"
-        echo ""
-    else
-        echo "Next steps:"
-        echo ""
-        echo "1. Grant Permissions:"
-        echo "   • System Settings → Privacy & Security → Input Monitoring"
-        echo "   • Enable 'karabiner_grabber' and 'karabiner_observer'"
-        echo ""
-        echo "2. Activate Configuration (IMPORTANT!):"
-        echo "   • Open Karabiner-Elements"
-        echo "   • Go to 'Complex Modifications' tab"
-        echo "   • Click 'Add rule'"
-        echo "   • Find 'Static Hands - Advanced (macOS)'"
-        echo "   • Enable ALL 9 rules in this order:"
-        echo "     1. CapsLock as Modifier (FIRST!)"
-        echo "     2. Modifier Keys (W/S/D/F)"
-        echo "     3. Navigation"
-        echo "     4. Command Combinations"
-        echo "     5. Text Editing"
-        echo "     6. Speed Navigation"
-        echo "     7. Case Transformation"
-        echo "     8. Special Functions"
-        echo "     9. Google Search"
-        echo ""
-    fi
-
+    
+    echo "Configuration file installed successfully!"
+    echo ""
+    echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+    echo "IMPORTANT: Complete these steps to activate Static Hands:"
+    echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+    echo ""
+    echo "1. Grant Permissions:"
+    echo "   • System Settings → Privacy & Security → Input Monitoring"
+    echo "   • Enable 'karabiner_grabber' and 'karabiner_observer'"
+    echo ""
+    echo "2. Enable Rules in Karabiner-Elements:"
+    echo "   • Open Karabiner-Elements (should be open now)"
+    echo "   • Go to 'Complex Modifications' tab"
+    echo "   • Click 'Add rule' button"
+    echo "   • Find 'Static Hands - Advanced (macOS)'"
+    echo "   • Click 'Enable' for ALL 9 rules in this order:"
+    echo ""
+    echo "     ✓ 1. CapsLock as Modifier (Enable FIRST!)"
+    echo "     ✓ 2. Modifier Keys (W/S/D/F)"
+    echo "     ✓ 3. Navigation"
+    echo "     ✓ 4. Command Combinations"
+    echo "     ✓ 5. Text Editing"
+    echo "     ✓ 6. Speed Navigation"
+    echo "     ✓ 7. Case Transformation"
+    echo "     ✓ 8. Special Functions"
+    echo "     ✓ 9. Google Search"
+    echo ""
     echo "3. Test the configuration:"
     echo "   • Open any text editor"
     echo "   • Try: CapsLock + I/K/J/L (arrow keys)"
@@ -286,15 +172,13 @@ show_instructions() {
     echo "   • Read README.md for complete documentation"
     echo "   • Print CHEATSHEET.txt for quick reference"
     echo ""
-
-    print_success "Enjoy Static Hands Advanced! ⌨️✨"
+    print_success "Setup complete! Enable the rules in Karabiner to start using Static Hands. ⌨️✨"
 }
 
 # Main installation flow
 main() {
     clear
     print_header "Static Hands - Advanced Edition Installer"
-    echo "Version: 3.0.0"
     echo "Platform: macOS (Karabiner-Elements)"
     echo ""
 
@@ -347,19 +231,8 @@ main() {
     # Install configuration
     install_config
 
-    # Restart Karabiner (creates karabiner.json)
+    # Restart Karabiner
     restart_karabiner
-
-    # Try to auto-enable rules (after Karabiner is ready)
-    AUTO_ENABLED=false
-    if auto_enable_rules; then
-        AUTO_ENABLED=true
-        # Restart again to apply enabled rules
-        sleep 2
-        killall "Karabiner-Elements" 2>/dev/null || true
-        sleep 1
-        open -a "Karabiner-Elements"
-    fi
 
     # Show instructions
     show_instructions
